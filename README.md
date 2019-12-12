@@ -1,4 +1,4 @@
-# Multi-FPS-Full-Rez-3d-ken-Burns
+# Multi-FPS-Full-Rez-3d-Ken-Burns
 This is a fork of the original from sniklaus. The original readme is below. 2 new scripts have been created. multi.py and fullrez.py. Both allow for you to select the output FPS.
 ## fullrez.py usage
 fullrez will process the image at full resolution. It takes the same flags as autozoom.py. You can process HD (1920x1080) and 2k (3840x2160) images on a 16GB card, and possibly a 11GB card. 4k is out of the question.
