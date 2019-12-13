@@ -54,9 +54,9 @@ arguments_strOut = './videos/autozoom.mp4'
 arguments_strFps = '25'
 
 for strOption, strArgument in getopt.getopt(sys.argv[1:], '', [ strParameter[2:] + '=' for strParameter in sys.argv[1::2] ])[0]:
+	if strOption == '--fps' and strArgument != '': arguments_strFps = strArgument # allow FPS value selection from cmd line
 	if strOption == '--in' and strArgument != '': arguments_strIn = strArgument # path to the input image
 	if strOption == '--out' and strArgument != '': arguments_strOut = strArgument # path to where the output should be stored
-	if strOption == '--fps' and strArgument != '': arguments_strFps = strArgument # allow FPS value selection from cmd line
 	# end
 
 	##########################################################
