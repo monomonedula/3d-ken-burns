@@ -123,7 +123,7 @@ if __name__ == '__main__':
 			'boolInpaint': True
 			})
 
-			moviepy.editor.ImageSequenceClip(sequence=[ numpyFrame[:, :, ::-1] for numpyFrame in numpyResult + list(reversed(numpyResult))[1:] ], fps=25).write_videofile(outFile)
+			moviepy.editor.ImageSequenceClip(sequence=[ numpyFrame[:, :, ::-1] for numpyFrame in numpyResult + list(reversed(numpyResult))[1:] ], fps=arguments_strFps).write_videofile(outFile)
 
 
 	if arguments_strNoZip == 'n' or arguments_strNoZip == 'N':
