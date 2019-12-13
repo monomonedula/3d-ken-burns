@@ -50,7 +50,7 @@ exec(open('./models/pointcloud-inpainting.py', 'r').read())
 ##########################################################
 
 arguments_strIn = './images/doublestrike.jpg'
-arguments_strOut = './autozoom.mp4'
+arguments_strOut = './videos/fullrez.mp4'
 arguments_strFps = '25'
 
 for strOption, strArgument in getopt.getopt(sys.argv[1:], '', [ strParameter[2:] + '=' for strParameter in sys.argv[1::2] ])[0]:

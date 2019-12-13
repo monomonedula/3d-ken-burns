@@ -86,9 +86,6 @@ if __name__ == '__main__':
 		inFile = os.fsdecode(file)
 
 		if inFile.endswith(".jpg") or inFile.endswith(".png"):
-
-			outFile = str(arguments_strOutDir+os.path.splitext(file)[0]+".mp4")
-
 			numpyImage = cv2.imread(filename=arguments_strInDir+inFile, flags=cv2.IMREAD_COLOR)
 
 			intWidth = numpyImage.shape[1]
