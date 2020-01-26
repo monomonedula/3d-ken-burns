@@ -50,7 +50,7 @@ exec(open('./models/pointcloud-inpainting.py', 'r').read())
 ##########################################################
 
 arguments_strIn = './images/doublestrike.jpg'
-arguments_strOut = './videos/autozoom.mp4'
+arguments_strOut = './videos/fullrez.mp4'
 arguments_strFps = '25'
 
 for strOption, strArgument in getopt.getopt(sys.argv[1:], '', [ strParameter[2:] + '=' for strParameter in sys.argv[1::2] ])[0]:
@@ -69,31 +69,26 @@ if __name__ == '__main__':
 
 	dblRatio = float(intWidth) / float(intHeight)
 
-	intWidth = min(int(1024 * dblRatio), 1024)
-	intHeight = min(int(1024 / dblRatio), 1024)
-
-	numpyImage = cv2.resize(src=numpyImage, dsize=(intWidth, intHeight), fx=0.0, fy=0.0, interpolation=cv2.INTER_AREA)
-
 	process_load(numpyImage, {})
 
 	objectFrom = {
-		'dblCenterU': intWidth / 2.0,
-		'dblCenterV': intHeight / 2.0,
-		'intCropWidth': int(math.floor(0.97 * intWidth)),
-		'intCropHeight': int(math.floor(0.97 * intHeight))
+	'dblCenterU': intWidth / 2.0,
+	'dblCenterV': intHeight / 2.0,
+	'intCropWidth': int(math.floor(0.97 * intWidth)),
+	'intCropHeight': int(math.floor(0.97 * intHeight))
 	}
 
 	objectTo = process_autozoom({
-		'dblShift': 100.0,
-		'dblZoom': 1.25,
-		'objectFrom': objectFrom
+	'dblShift': 100.0,
+	'dblZoom': 1.25,
+	'objectFrom': objectFrom
 	})
 
 	numpyResult = process_kenburns({
-		'dblSteps': numpy.linspace(0.0, 1.0, 75).tolist(),
-		'objectFrom': objectFrom,
-		'objectTo': objectTo,
-		'boolInpaint': True
+	'dblSteps': numpy.linspace(0.0, 1.0, 75).tolist(),
+	'objectFrom': objectFrom,
+	'objectTo': objectTo,
+	'boolInpaint': True
 	})
 
 	moviepy.editor.ImageSequenceClip(sequence=[ numpyFrame[:, :, ::-1] for numpyFrame in numpyResult + list(reversed(numpyResult))[1:] ], fps=arguments_strFps).write_videofile(arguments_strOut)
