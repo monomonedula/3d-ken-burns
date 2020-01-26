@@ -1,5 +1,10 @@
-# Multi-FPS-Full-Rez-3d-Ken-Burns
-This is a fork of the original from sniklaus. It takes an image and generates a parallaxed video from the image. The original readme is below. 2 new scripts have been created. multi.py and fullrez.py. Both allow for you to select the output FPS. The Google Colab 1 click to load notebook can be found here:[Colab-Multi-FPS-Full-Rez-3d-Ken-Burns](https://github.com/pressreset/Colab-Multi-FPS-Full-Rez-3d-Ken-Burns).
+# Colab Link [Colab-Ken-Burns-High-Resolution] (https://github.com/JonathanFly/3d-ken-burns/blob/master/3D_Ken_Burns_HighResolution.ipynb
+
+# This is the pressreset Colab with a couple of bug fixes and some extra information. I only updated fullrez.py
+
+# Multi-FPS-Full-Rez-3d-Ken-Burns)
+This is a fork of the original from sniklaus. It takes an image and generates a parallaxed video from the image. The original readme is below. 2 new scripts have been created. multi.py and fullrez.py. Both allow for you to select the output FPS. 
+
 ## fullrez.py usage
 fullrez will process the image at full resolution. It takes the same flags as autozoom.py. You can process HD (1920x1080) and 2k (3840x2160) images on a 16GB card, and possibly a 11GB card. 4k is out of the question.
 ### WARNING: THIS TAKES A TON OF GPU MEMORY UP TO 10GB+ FOR LARGE IMAGES
