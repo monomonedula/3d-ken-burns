@@ -1,5 +1,3 @@
-%%writefile /content/3d-ken-burns/fullrez.py
-#You can edit this cell then just click the play button to update the file.
 #!/usr/bin/env python
 
 import torch
@@ -77,18 +75,23 @@ if __name__ == '__main__':
 	objectFrom = {
 	'dblCenterU': intWidth / 2.0, #You can change these but many settings will crash it
 	'dblCenterV': intHeight / 2.0, #You can change these but many settings will crash it
-	'intCropWidth': int(math.floor(0.97 * intWidth)),
-	'intCropHeight': int(math.floor(0.97 * intHeight))
+	'intCropWidth': int(math.floor(0.98 * intWidth)),
+	'intCropHeight': int(math.floor(0.98 * intHeight))
 	}
 
 	objectTo = process_autozoom({
-	'dblShift': 100.0,
-	'dblZoom': 1.25,
+	#'dblCenterU': intWidth / 2.0, #Not sure of effect
+	#'dblCenterV': intHeight / 2.0, #Not sure of effect
+	'dblShift': 100.0, #original
+	#'dblShift': 10.0, #try this with large zooms
+	#'dblZoom': 40.25, #x50 zoom
+	'dblZoom': 1.25, #original
 	'objectFrom': objectFrom
 	})
 
 	numpyResult = process_kenburns({
-  'dblSteps': numpy.linspace(0.0, 1.0, 75).tolist(),
+	#'dblSteps': numpy.linspace(0.0, 40.0, 800).tolist(), #example very large zoom, lot sof extra frames
+	'dblSteps': numpy.linspace(0.0, 1.0, 75).tolist(), #original settings
 	#'dblSteps': numpy.linspace(0.0, 20.0, 275).tolist(), # Zoom x20 and more frames 
 	'objectFrom': objectFrom,
 	'objectTo': objectTo,
