@@ -1,3 +1,5 @@
+%%writefile /content/3d-ken-burns/fullrez.py
+#You can edit this cell then just click the play button to update the file.
 #!/usr/bin/env python
 
 import torch
@@ -51,16 +53,17 @@ exec(open('./models/pointcloud-inpainting.py', 'r').read())
 
 arguments_strIn = './images/doublestrike.jpg'
 arguments_strOut = './videos/fullrez.mp4'
-arguments_strFps = '25'
+arguments_strFps = '30'
+arguments_strBitRate = "12M"
 
 for strOption, strArgument in getopt.getopt(sys.argv[1:], '', [ strParameter[2:] + '=' for strParameter in sys.argv[1::2] ])[0]:
 	if strOption == '--fps' and strArgument != '': arguments_strFps = strArgument # allow FPS value selection from cmd line
+	if strOption == '--bitrate' and strArgument != '': arguments_strBitRate = strArgument # allow FPS value selection from cmd line
 	if strOption == '--in' and strArgument != '': arguments_strIn = strArgument # path to the input image
 	if strOption == '--out' and strArgument != '': arguments_strOut = strArgument # path to where the output should be stored
 	# end
 
 	##########################################################
-
 if __name__ == '__main__':
 	numpyImage = cv2.imread(filename=arguments_strIn, flags=cv2.IMREAD_COLOR)
 
@@ -72,8 +75,8 @@ if __name__ == '__main__':
 	process_load(numpyImage, {})
 
 	objectFrom = {
-	'dblCenterU': intWidth / 2.0,
-	'dblCenterV': intHeight / 2.0,
+	'dblCenterU': intWidth / 2.0, #You can change these but many settings will crash it
+	'dblCenterV': intHeight / 2.0, #You can change these but many settings will crash it
 	'intCropWidth': int(math.floor(0.97 * intWidth)),
 	'intCropHeight': int(math.floor(0.97 * intHeight))
 	}
@@ -85,11 +88,12 @@ if __name__ == '__main__':
 	})
 
 	numpyResult = process_kenburns({
-	'dblSteps': numpy.linspace(0.0, 1.0, 75).tolist(),
+  'dblSteps': numpy.linspace(0.0, 1.0, 75).tolist(),
+	#'dblSteps': numpy.linspace(0.0, 20.0, 275).tolist(), # Zoom x20 and more frames 
 	'objectFrom': objectFrom,
 	'objectTo': objectTo,
 	'boolInpaint': True
 	})
 
-	moviepy.editor.ImageSequenceClip(sequence=[ numpyFrame[:, :, ::-1] for numpyFrame in numpyResult + list(reversed(numpyResult))[1:] ], fps=arguments_strFps).write_videofile(arguments_strOut)
+	moviepy.editor.ImageSequenceClip(sequence=[ numpyFrame[:, :, ::-1] for numpyFrame in numpyResult + list(reversed(numpyResult))[1:] ], fps=float(arguments_strFps)).write_videofile(arguments_strOut, bitrate=arguments_strBitRate)
 	# end
