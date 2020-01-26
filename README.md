@@ -1,4 +1,4 @@
-# Colab Link [Colab-Ken-Burns-High-Resolution] (https://github.com/JonathanFly/3d-ken-burns/blob/master/3D_Ken_Burns_HighResolution.ipynb
+# Colab Link [Colab-Ken-Burns-High-Resolution] (https://github.com/JonathanFly/3d-ken-burns/blob/master/3D_Ken_Burns_HighResolution.ipynb)
 
 # This is the pressreset Colab with a couple of bug fixes and some extra information. I only updated fullrez.py
 
